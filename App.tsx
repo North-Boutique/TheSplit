@@ -29,7 +29,7 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Landing} />
           <Stack.Screen name="Splits" component={Splits} />
-          <Stack.Screen name="CreateNew" component={CreateNew} />
+          <Stack.Screen name="Create New" component={CreateNew} />
           <Stack.Screen name="Workouts" component={Workouts} />
         </Stack.Navigator>
       </NavigationContainer>

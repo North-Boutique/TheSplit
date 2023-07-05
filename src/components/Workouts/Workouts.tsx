@@ -19,8 +19,6 @@ function Workouts() {
   }, [savedData]);
   return (
     <VStack flex={1} justifyContent="space-between">
-      <Text>Workouts Screen</Text>
-
       <FlatList
         data={renderedData}
         renderItem={({item}) => (
@@ -33,7 +31,7 @@ function Workouts() {
             pl={['0', '4']}
             pr={['0', '5']}
             py="2">
-            <HStack space={[2, 3]} justifyContent="space-between">
+            <HStack safeAreaX={5} space={[2, 3]} justifyContent="space-between">
               <VStack>
                 <Text
                   _dark={{

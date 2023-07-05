@@ -76,7 +76,7 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
         style={active === 'CreateNew' ? styles.shadowProp : []}
         space={2}
         alignItems="center">
-        <TouchableOpacity onPress={() => navigation.navigate('CreateNew')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Create New')}>
           <IconButton
             disabled
             variant="ghost"
