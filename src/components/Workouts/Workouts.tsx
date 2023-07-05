@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
 import {Box, FlatList, HStack, Text, VStack} from 'native-base';
+import React, {useEffect, useState} from 'react';
 import BottomTabBar from '../Navigation/BottomTabBar';
+import {Workout} from '../../services/types';
 import useAvaliableData from '../../hooks/useAvailableData';
-import {SplitGroup} from '../../services/types';
 
-function Landing() {
-  const [renderedData, setRenderedData] = useState<SplitGroup>();
+function Workouts() {
+  const [renderedData, setRenderedData] = useState<Workout[]>();
   const [dataToBeChanged, setDataToBeChanged] = useState<boolean>(false);
   const {savedData} = useAvaliableData();
 
@@ -13,14 +13,14 @@ function Landing() {
     if (savedData) {
       console.log(savedData.generatedSplits);
       setDataToBeChanged(!dataToBeChanged);
-      setRenderedData(savedData.generatedSplits);
+      setRenderedData(Object.values(savedData.defaultData.workoutList));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [savedData]);
-
   return (
     <VStack flex={1} justifyContent="space-between">
-      <Text>Home Screen</Text>
+      <Text>Workouts Screen</Text>
+
       <FlatList
         data={renderedData}
         renderItem={({item}) => (
@@ -48,7 +48,7 @@ function Landing() {
                   _dark={{
                     color: 'warmGray.200',
                   }}>
-                  {item.createdAt}
+                  {item.description}
                 </Text>
               </VStack>
             </HStack>
@@ -56,9 +56,9 @@ function Landing() {
         )}
         keyExtractor={item => item.id.toString()}
       />
-      <BottomTabBar active="Home" />
+      <BottomTabBar active="Workouts" />
     </VStack>
   );
 }
 
-export default Landing;
+export default Workouts;

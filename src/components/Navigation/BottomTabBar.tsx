@@ -1,16 +1,13 @@
 import * as React from 'react';
-import {SafeAreaView, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Split from '../Split/Split';
-import Excercises from '../Excercises/Excercises';
-import CreateNew from '../CreateNew/CreateNew';
-import Landing from '../Landing/Landing';
 import {HStack, VStack, IconButton, Icon, Text} from 'native-base';
+import styles from './style';
 
 type BottomTabBarProps = {
-  active: 'Home' | 'Splits' | 'CreateNew' | 'Exercises';
+  active: 'Home' | 'Splits' | 'CreateNew' | 'Workouts';
 };
 
 const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
@@ -18,12 +15,15 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
 
   return (
     <HStack
-      bg="primary.500"
+      bg="#4B9AE7"
       alignItems="center"
       justifyContent="space-around"
-      safeAreaBottom
-    >
-      <VStack space={2} alignItems="center">
+      safeAreaBottom={7}
+      safeAreaX>
+      <VStack
+        style={active === 'Home' ? styles.shadowProp : []}
+        space={2}
+        alignItems="center">
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <IconButton
             disabled
@@ -39,14 +39,17 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
                 size={30}
               />
             }
-          ></IconButton>
+          />
           <Text textAlign={'center'} color="white" fontSize="md" mt={-3}>
             Home
           </Text>
         </TouchableOpacity>
       </VStack>
-      <VStack space={2} alignItems="center">
-        <TouchableOpacity onPress={() => navigation.navigate('Split')}>
+      <VStack
+        style={active === 'Splits' ? styles.shadowProp : []}
+        space={2}
+        alignItems="center">
+        <TouchableOpacity onPress={() => navigation.navigate('Splits')}>
           <IconButton
             disabled
             variant="ghost"
@@ -65,11 +68,14 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
             }
           />
           <Text textAlign={'center'} color="white" fontSize="md" mt={-3}>
-            Split
+            Splits
           </Text>
         </TouchableOpacity>
       </VStack>
-      <VStack space={2} alignItems="center">
+      <VStack
+        style={active === 'CreateNew' ? styles.shadowProp : []}
+        space={2}
+        alignItems="center">
         <TouchableOpacity onPress={() => navigation.navigate('CreateNew')}>
           <IconButton
             disabled
@@ -96,8 +102,11 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
           </Text>
         </TouchableOpacity>
       </VStack>
-      <VStack space={2} alignItems="center">
-        <TouchableOpacity onPress={() => navigation.navigate('Excercises')}>
+      <VStack
+        style={active === 'Workouts' ? styles.shadowProp : []}
+        space={2}
+        alignItems="center">
+        <TouchableOpacity onPress={() => navigation.navigate('Workouts')}>
           <IconButton
             disabled
             variant="ghost"
@@ -105,19 +114,16 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
               <Icon
                 as={
                   <Ionicons
-                    name={
-                      active === 'Exercises' ? 'body-sharp' : 'body-outline'
-                    }
+                    name={active === 'Workouts' ? 'body-sharp' : 'body-outline'}
                   />
                 }
                 color="white"
                 size={30}
               />
             }
-            onPress={() => navigation.navigate('Excercises')}
           />
           <Text textAlign={'center'} color="white" fontSize="md" mt={-3}>
-            Exercises
+            Workouts
           </Text>
         </TouchableOpacity>
       </VStack>

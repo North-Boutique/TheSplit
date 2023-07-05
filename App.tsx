@@ -1,23 +1,36 @@
-import React from 'react';
-import {NativeBaseProvider, Text, View} from 'native-base';
+import React, {useEffect} from 'react';
+import {NativeBaseProvider} from 'native-base';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Split from './src/components/Split/Split';
+import Splits from './src/components/Splits/Splits';
 import CreateNew from './src/components/CreateNew/CreateNew';
-import Excercises from './src/components/Excercises/Excercises';
+import Workouts from './src/components/Workouts/Workouts';
 import Landing from './src/components/Landing/Landing';
+import DEFAULTS from './src/db/DEFAULTS.json';
+import {getData, seedUserData} from './src/services/Storage';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  useEffect(() => {
+    getData().then(data => {
+      if (data.defaultData.muscleGroups.length === 0) {
+        const userdata: any = {
+          ...DEFAULTS,
+        };
+        seedUserData(userdata);
+      }
+    });
+  }, []);
+
   return (
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Landing} />
-          <Stack.Screen name="Split" component={Split} />
+          <Stack.Screen name="Splits" component={Splits} />
           <Stack.Screen name="CreateNew" component={CreateNew} />
-          <Stack.Screen name="Excercises" component={Excercises} />
+          <Stack.Screen name="Workouts" component={Workouts} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

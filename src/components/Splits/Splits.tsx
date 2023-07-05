@@ -1,4 +1,4 @@
-import {Box, Text, View, VStack} from 'native-base';
+import {Text, VStack} from 'native-base';
 import React from 'react';
 import BottomTabBar from '../Navigation/BottomTabBar';
 

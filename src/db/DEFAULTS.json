@@ -1,0 +1,186 @@
+{
+  "generatedSplits": [],
+  "generatedWorkouts": {},
+  "defaultData": {
+    "muscleGroups": [
+      {
+        "bodyPart": "legs",
+        "name": "Quads"
+      },
+      {
+        "bodyPart": "arms",
+        "name": "Biceps"
+      },
+      {
+        "bodyPart": "shoulders",
+        "name": "Shoulders"
+      },
+      {
+        "bodyPart": "chest",
+        "name": "Chest"
+      },
+      {
+        "bodyPart": "arms",
+        "name": "Triceps"
+      },
+      {
+        "bodyPart": "back",
+        "name": "Back"
+      },
+      {
+        "bodyPart": "legs",
+        "name": "Glutes"
+      },
+      {
+        "bodyPart": "legs",
+        "name": "Hamstrings"
+      },
+      {
+        "bodyPart": "abs",
+        "name": "Abs"
+      }
+    ],
+    "workoutList": {
+      "LegPress": {
+        "id": 0,
+        "importance": 0,
+        "muscleGroup": "Quads",
+        "name": "Leg Press",
+        "description": "Feet lower on machine; Focus on depth"
+      },
+      "SledPushPull": {
+        "id": 1,
+        "importance": 0,
+        "muscleGroup": "Quads",
+        "name": "Sled Push\\Pull",
+        "description": "Increase Volume"
+      },
+      "DBStepUp": {
+        "id": 2,
+        "importance": 0,
+        "muscleGroup": "Quads",
+        "name": "Dumbell Step Up",
+        "description": "Focus on upright posture"
+      },
+      "Hacksquat": {
+        "id": 3,
+        "importance": 1,
+        "muscleGroup": "Quads",
+        "name": "Hacksquat",
+        "description": "Focus on feet out front"
+      },
+      "DBBulgarianSplit": {
+        "id": 4,
+        "importance": 1,
+        "muscleGroup": "Quads",
+        "name": "Dumbell Bulgarian Split Squat",
+        "description": "Focus on upright posture"
+      },
+      "HighBarSquat": {
+        "id": 5,
+        "importance": 1,
+        "muscleGroup": "Quads",
+        "name": "High Bar Back Squat",
+        "description": ""
+      },
+      "DBBBReverseLunge": {
+        "id": 6,
+        "importance": 1,
+        "muscleGroup": "Quads",
+        "name": "Dumbell\\Barbell Reverse Lunge",
+        "description": "Focus on upright posture"
+      },
+      "FrontSquat": {
+        "id": 7,
+        "importance": 2,
+        "muscleGroup": "Quads",
+        "name": "Front Squat",
+        "description": ""
+      },
+      "InvertedChinCurl": {
+        "id": 8,
+        "importance": 0,
+        "muscleGroup": "Biceps",
+        "name": "Inverted Dumbell Chin Curl",
+        "description": "Not good for loading weight"
+      },
+      "ZottmanCurl": {
+        "id": 9,
+        "importance": 0,
+        "muscleGroup": "Biceps",
+        "name": "Zottman Curl",
+        "description": ""
+      },
+      "PreacherCurl": {
+        "id": 10,
+        "importance": 0,
+        "muscleGroup": "Biceps",
+        "name": "Preacher Curl",
+        "description": "Low Load"
+      },
+      "CableCurl": {
+        "id": 11,
+        "importance": 0,
+        "muscleGroup": "Biceps",
+        "name": "Cable Curl",
+        "description": "Don't hyperextend"
+      },
+      "FlexCurl": {
+        "id": 12,
+        "importance": 1,
+        "muscleGroup": "Biceps",
+        "name": "Flex Curl",
+        "description": "Cable curl towards head"
+      },
+      "DragCurl": {
+        "id": 13,
+        "importance": 1,
+        "muscleGroup": "Biceps",
+        "name": "Drag Curl",
+        "description": "Good for long head of bicep"
+      },
+      "SpiderCurl": {
+        "id": 14,
+        "importance": 1,
+        "muscleGroup": "Biceps",
+        "name": "Spider Curl",
+        "description": "Facing an incline bench dumbell curl"
+      },
+      "DBWaiterCurl": {
+        "id": 15,
+        "importance": 1,
+        "muscleGroup": "Biceps",
+        "name": "Dumbell Waiter Curl",
+        "description": "Two hands on same dumbell"
+      },
+      "InclineDBCurl": {
+        "id": 16,
+        "importance": 1,
+        "muscleGroup": "Biceps",
+        "name": "Incline Dumbell Curl",
+        "description": "Raise from behind body"
+      },
+      "ChinUps": {
+        "id": 17,
+        "importance": 1,
+        "muscleGroup": "Biceps",
+        "name": "Chin Ups",
+        "description": ""
+      },
+      "BBCurl": {
+        "id": 18,
+        "importance": 1,
+        "muscleGroup": "Biceps",
+        "name": "Barbell Curl",
+        "description": ""
+      },
+      "AltStandingDBCurl": {
+        "id": 19,
+        "importance": 2,
+        "muscleGroup": "Biceps",
+        "name": "Alternating Standing Dumbell Curl",
+        "description": ""
+      }
+    }
+  }
+}
