@@ -27,7 +27,7 @@ export type MuscleGroups = MuscleGroup[];
 export type Workout = {
   id: number;
   importance: 0 | 1 | 2;
-  muscleGroup: MuscleGroup;
+  muscleGroup: MuscleGroupNames[];
   name: string;
   description: string;
 };
