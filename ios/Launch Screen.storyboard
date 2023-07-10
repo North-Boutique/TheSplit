@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="8wk-dF-gID">
-                                <rect key="frame" x="-55" y="2" width="500" height="874"/>
+                                <rect key="frame" x="-55" y="-9" width="500" height="885"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="default"/>
                             </imageView>
