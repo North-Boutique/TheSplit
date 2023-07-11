@@ -1,7 +1,7 @@
 import {Box, FlatList, HStack, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import BottomTabBar from '../Navigation/BottomTabBar';
-import {Workout} from '../../services/types';
+import {Workout, ImportantMappings} from '../../services/types';
 import useAvaliableData from '../../hooks/useAvailableData';
 
 function Workouts() {
@@ -48,7 +48,15 @@ function Workouts() {
                   }}>
                   {item.description}
                 </Text>
+                <Text
+                  color="coolGray.600"
+                  _dark={{
+                    color: 'warmGray.200',
+                  }}>
+                  {item.muscleGroup.join(', ')}
+                </Text>
               </VStack>
+              <Text>{ImportantMappings[item.importance]}</Text>
             </HStack>
           </Box>
         )}

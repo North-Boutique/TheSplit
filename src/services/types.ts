@@ -24,6 +24,12 @@ export type MuscleGroupNames =
 
 export type MuscleGroups = MuscleGroup[];
 
+export const ImportantMappings = {
+  0: 'Mid',
+  1: 'Better',
+  2: 'Best',
+};
+
 export type Workout = {
   id: number;
   importance: 0 | 1 | 2;
