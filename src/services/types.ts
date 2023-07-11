@@ -95,7 +95,7 @@ export type UpdateUserDataSplits = {
 export type UpdateUserDataWorkouts = {
   key: 'generatedWorkouts';
   name: string;
-  data: Workout;
+  data: Workout[];
 };
 
 export const DEFAULT_USER_DATA = {
