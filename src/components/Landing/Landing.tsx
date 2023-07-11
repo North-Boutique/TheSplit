@@ -11,7 +11,6 @@ function Landing() {
 
   useEffect(() => {
     if (savedData) {
-      console.log(savedData.generatedSplits);
       setDataToBeChanged(!dataToBeChanged);
       setRenderedData(savedData.generatedSplits);
     }

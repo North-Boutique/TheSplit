@@ -11,7 +11,6 @@ function Workouts() {
 
   useEffect(() => {
     if (savedData) {
-      console.log(savedData.generatedSplits);
       setDataToBeChanged(!dataToBeChanged);
       setRenderedData(Object.values(savedData.defaultData.workoutList));
     }

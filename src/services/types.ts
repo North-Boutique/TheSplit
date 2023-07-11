@@ -42,36 +42,41 @@ export type WorkoutList = {
   [name: string]: Workout;
 };
 
+export type WorkoutByReference = {
+  name: string;
+  excersiseIds: number[];
+};
+
 export type Split = {
   id: number;
   name?: string;
   createdAt: string;
   monday: {
-    workout: WorkoutList;
+    workout: WorkoutByReference[];
     muscleGroup: MuscleGroup;
   };
   tuesday: {
-    workout: WorkoutList;
+    workout: WorkoutByReference[];
     muscleGroup: MuscleGroup;
   };
   wednesday: {
-    workout: WorkoutList;
+    workout: WorkoutByReference[];
     muscleGroup: MuscleGroup;
   };
   thursday: {
-    workout: WorkoutList;
+    workout: WorkoutByReference[];
     muscleGroup: MuscleGroup;
   };
   friday: {
-    workout: WorkoutList;
+    workout: WorkoutByReference[];
     muscleGroup: MuscleGroup;
   };
   saturday: {
-    workout: WorkoutList;
+    workout: WorkoutByReference[];
     muscleGroup: MuscleGroup;
   };
   sunday: {
-    workout: WorkoutList;
+    workout: WorkoutByReference[];
     muscleGroup: MuscleGroup;
   };
 };
@@ -79,7 +84,7 @@ export type Split = {
 export type SplitGroup = Split[];
 
 export type UserData = {
-  generatedWorkouts: WorkoutList;
+  generatedWorkouts: WorkoutByReference[];
   generatedSplits: SplitGroup;
   defaultData: {
     muscleGroups: MuscleGroups;
@@ -95,12 +100,12 @@ export type UpdateUserDataSplits = {
 export type UpdateUserDataWorkouts = {
   key: 'generatedWorkouts';
   name: string;
-  data: Workout[];
+  data: {excersiseIds: number[]};
 };
 
 export const DEFAULT_USER_DATA = {
   generatedSplits: [],
-  generatedWorkouts: {},
+  generatedWorkouts: [],
   defaultData: {
     muscleGroups: [],
     workoutList: {},

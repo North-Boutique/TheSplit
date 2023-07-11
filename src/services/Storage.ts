@@ -16,12 +16,16 @@ const updateUserData = async (
       userData.generatedSplits = [...userData.generatedSplits, value.data];
       break;
     case 'generatedWorkouts':
-      userData.generatedWorkouts[value.name] = value.data;
+      userData.generatedWorkouts = [
+        ...userData.generatedWorkouts,
+        {name: value.name, excersiseIds: value.data.excersiseIds},
+      ];
       break;
   }
   try {
     const jsonValue = JSON.stringify(userData);
-    return await AsyncStorage.mergeItem('@LOCAL_USER', jsonValue);
+    await AsyncStorage.mergeItem('@LOCAL_USER', jsonValue);
+    return true;
   } catch (e) {
     // saving error
     return e;
@@ -39,7 +43,6 @@ const getData = async (): Promise<UserData> => {
 };
 
 const seedUserData = async (data: any) => {
-  console.log(data);
   try {
     const jsonValue = JSON.stringify(data);
     return await AsyncStorage.setItem('@LOCAL_USER', jsonValue);
