@@ -44,7 +44,9 @@ export type WorkoutList = {
 
 export type WorkoutByReference = {
   name: string;
-  excersiseIds: number[];
+  workouts: Workout[];
+  createdAt: string;
+  muscleGroups: MuscleGroups;
 };
 
 export type Split = {
@@ -100,7 +102,7 @@ export type UpdateUserDataSplits = {
 export type UpdateUserDataWorkouts = {
   key: 'generatedWorkouts';
   name: string;
-  data: {excersiseIds: number[]};
+  data: {workouts: Workout[]; muscleGroups: MuscleGroups};
 };
 
 export const DEFAULT_USER_DATA = {

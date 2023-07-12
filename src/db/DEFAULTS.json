@@ -1,6 +1,6 @@
 {
   "generatedSplits": [],
-  "generatedWorkouts": {},
+  "generatedWorkouts": [],
   "defaultData": {
     "muscleGroups": [
       {
@@ -43,595 +43,595 @@
     "workoutList": {
       "LegPress": {
         "id": 0,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Quads"],
         "name": "Leg Press",
         "description": "Feet lower on machine; Focus on depth"
       },
       "SledPushPull": {
-        "id": 1,
-        "importance": 0,
+        "id": 0.2,
+        "importance": 0.1,
         "muscleGroup": ["Quads"],
         "name": "Sled Push\\Pull",
         "description": "Increase Volume"
       },
       "DBStepUp": {
-        "id": 2,
-        "importance": 0,
+        "id": 0.3,
+        "importance": 0.1,
         "muscleGroup": ["Quads"],
         "name": "Dumbell Step Up",
         "description": "Focus on upright posture"
       },
       "Hacksquat": {
         "id": 3,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Quads"],
         "name": "Hacksquat",
         "description": "Focus on feet out front"
       },
       "DBBulgarianSplit": {
         "id": 4,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Quads"],
         "name": "Dumbell Bulgarian Split Squat",
         "description": "Focus on upright posture"
       },
       "HighBarSquat": {
         "id": 5,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Quads"],
         "name": "High Bar Back Squat",
         "description": ""
       },
       "DBBBReverseLunge": {
         "id": 6,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Quads"],
         "name": "Dumbell\\Barbell Reverse Lunge",
         "description": "Focus on upright posture"
       },
       "FrontSquat": {
         "id": 7,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Quads"],
         "name": "Front Squat",
         "description": ""
       },
       "InvertedChinCurl": {
         "id": 8,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Biceps"],
         "name": "Inverted Dumbell Chin Curl",
         "description": "Not good for loading weight"
       },
       "ZottmanCurl": {
         "id": 9,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Biceps"],
         "name": "Zottman Curl",
         "description": ""
       },
       "PreacherCurl": {
         "id": 10,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Biceps"],
         "name": "Preacher Curl",
         "description": "Low Load"
       },
       "CableCurl": {
         "id": 11,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Biceps"],
         "name": "Cable Curl",
         "description": "Don't hyperextend"
       },
       "FlexCurl": {
         "id": 12,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Biceps"],
         "name": "Flex Curl",
         "description": "Cable curl towards head"
       },
       "DragCurl": {
         "id": 13,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Biceps"],
         "name": "Drag Curl",
         "description": "Good for long head of bicep"
       },
       "SpiderCurl": {
         "id": 14,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Biceps"],
         "name": "Spider Curl",
         "description": "Facing an incline bench dumbell curl"
       },
       "DBWaiterCurl": {
         "id": 15,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Biceps"],
         "name": "Dumbell Waiter Curl",
         "description": "Two hands on same dumbell"
       },
       "InclineDBCurl": {
         "id": 16,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Biceps"],
         "name": "Incline Dumbell Curl",
         "description": "Raise from behind body"
       },
       "ChinUps": {
         "id": 17,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Biceps"],
         "name": "Chin Ups",
         "description": ""
       },
       "BBCurl": {
         "id": 18,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Biceps"],
         "name": "Barbell Curl",
         "description": ""
       },
       "AltStandingDBCurl": {
         "id": 19,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Biceps"],
         "name": "Alternating Standing Dumbell Curl",
         "description": ""
       },
       "PlatePressout": {
         "id": 20,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Shoulders"],
         "name": "Plate Pressout",
         "description": "Lift plate up high"
       },
       "DBCheatLateralRaise": {
         "id": 21,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Shoulders"],
         "name": "Dumbell Cheat Lateral Raise",
         "description": "Lateral Raise with cheat"
       },
       "ReverseFly": {
         "id": 22,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Shoulders"],
         "name": "Reverse Fly",
         "description": "Range of motion limitation"
       },
       "ArnoldPress": {
         "id": 23,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Shoulders"],
         "name": "Arnold Dumbell Press",
         "description": ""
       },
       "AbductionRow": {
         "id": 24,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Shoulders"],
         "name": "Abduction Row",
         "description": "Pulling dumbell back and up."
       },
       "DBLateralRaise": {
         "id": 25,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Shoulders"],
         "name": "Dumbell Lateral Raise",
         "description": "Thumb higher than pinky. Lean forward."
       },
       "HipHugger": {
         "id": 26,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Shoulders"],
         "name": "Hip Hugger",
         "description": "Arm behind body. Fixing pants motion."
       },
       "DBFrontRaise": {
         "id": 27,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Shoulders"],
         "name": "Dumbell Front Raise",
         "description": "Don't raise over head"
       },
       "CableLateralRaise": {
         "id": 28,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Shoulders"],
         "name": "Cable Lateral Raise",
         "description": "Don't raise over head"
       },
       "RearDeltRow": {
         "id": 29,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Shoulders"],
         "name": "Rear Delt Row",
         "description": "Simmilar to lean forward face pull"
       },
       "OverheadPress": {
         "id": 30,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Shoulders"],
         "name": "Overhead Press",
         "description": "For both dumbell and barbell."
       },
       "PushUp": {
         "id": 31,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Chest"],
         "name": "Basic Push Up",
         "description": ""
       },
       "FloorDBFly": {
         "id": 32,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Chest"],
         "name": "Floor Dumbell Fly",
         "description": ""
       },
       "UnderhandDBBench": {
         "id": 33,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Chest"],
         "name": "Underhand Dumbell Bench Press",
         "description": ""
       },
       "TwistingPushUp": {
         "id": 34,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Chest"],
         "name": "Twisting Push Up",
         "description": ""
       },
       "CableCrossoverFly": {
         "id": 35,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Chest"],
         "name": "Cable Crossover Fly",
         "description": ""
       },
       "LyingCableBench": {
         "id": 36,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Chest"],
         "name": "Lying Cable Bench Press",
         "description": "Wide cables"
       },
       "Dips": {
         "id": 37,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Chest"],
         "name": "Dips",
         "description": ""
       },
       "HeavyOneArmCrossover": {
         "id": 38,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Chest"],
         "name": "Heavy One Arm Crossover",
         "description": "Like 3D chest"
       },
       "LowInclineDBBench": {
         "id": 39,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Chest"],
         "name": "Low Incline Dumbell Bench Press",
         "description": "30-45 Degree incline."
       },
       "Bench": {
         "id": 40,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Chest"],
         "name": "Bench Press",
         "description": "Barbell or Dumbell."
       },
       "CobraPushUp": {
         "id": 41,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Triceps"],
         "name": "Cobra Push Up",
         "description": "Move up into cobra position."
       },
       "ReverseGripPushdown": {
         "id": 42,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Triceps"],
         "name": "Reverse Grip Tricep Pushdown",
         "description": "Holding underneath."
       },
       "OverheadRopeExtension": {
         "id": 43,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Triceps"],
         "name": "Overhead Rope Extension",
         "description": "Reverse facepull."
       },
       "JMPress": {
         "id": 44,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Triceps"],
         "name": "JM Press",
         "description": "Cross between skull crusher and dumbell bench press."
       },
       "DBKickback": {
         "id": 45,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Triceps"],
         "name": "Dumbell Kickback",
         "description": "Elbow behind body."
       },
       "InclineDBPowerbomb": {
         "id": 46,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Triceps"],
         "name": "Incline Dumbell Powerbomb",
         "description": ""
       },
       "RockingPushdowns": {
         "id": 47,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Triceps"],
         "name": "Rocking Tricep Pushdowns",
         "description": "Leaning back during motion."
       },
       "WeightedUprightDip": {
         "id": 48,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Triceps"],
         "name": "Weighted Upright Dip",
         "description": ""
       },
       "CloseGripBench": {
         "id": 49,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Triceps"],
         "name": "Close Grip Bench Press",
         "description": ""
       },
       "LyingTricepExtension": {
         "id": 50,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Triceps"],
         "name": "Lying Tricep Extension",
         "description": "Barbell overhead dip."
       },
       "StandingDBBentRow": {
         "id": 51,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Back"],
         "name": "Standing Dumbell Bent Over Row",
         "description": "One arm at a time."
       },
       "StraightArmPushdown": {
         "id": 52,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Back"],
         "name": "Straight Arm Pushdown",
         "description": ""
       },
       "DBPullover": {
         "id": 53,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Back"],
         "name": "Dumbell Pull Over",
         "description": "Focus on stretch and lats."
       },
       "SeatedCableRow": {
         "id": 54,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Back"],
         "name": "Seated Cable Row",
         "description": ""
       },
       "MeadowsRow": {
         "id": 55,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Back"],
         "name": "Meadows Row",
         "description": "Single arm barbell ground lift."
       },
       "OneArmHighCableRow": {
         "id": 56,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Back"],
         "name": "One Arm High Cable Row",
         "description": ""
       },
       "LatPulldown": {
         "id": 57,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Back"],
         "name": "Lat Pulldown",
         "description": "Elbows in front of you."
       },
       "LatPulldownTwist": {
         "id": 58,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Back"],
         "name": "Lat Pulldown + Twist Down",
         "description": ""
       },
       "DeadRow": {
         "id": 59,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Back"],
         "name": "Dead Row",
         "description": "Explosive movement."
       },
       "WeightedPullUp": {
         "id": 60,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Back"],
         "name": "Weighted Pull Up",
         "description": ""
       },
       "BBRow": {
         "id": 61,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Back"],
         "name": "Barbell Row",
         "description": ""
       },
       "DBReverseSprinterLunge": {
         "id": 62,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Dumbell Reverse Sprinter Lunge",
         "description": ""
       },
       "StandingCuffKickback": {
         "id": 63,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Standing Cuff Kickback",
         "description": "Straight leg."
       },
       "DBSingleLegRDL": {
         "id": 64,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Dumbell Single Leg RDL",
         "description": ""
       },
       "CableSingleLegRDL": {
         "id": 65,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Cable Single Leg RDL",
         "description": ""
       },
       "SeatedHamstringCurl": {
         "id": 66,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Seated Hamstring Curl",
         "description": ""
       },
       "BandedStepThrough": {
         "id": 67,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Banded Step Through",
         "description": ""
       },
       "KettleBellSwing": {
         "id": 68,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Kettle Bell Swing",
         "description": ""
       },
       "CablePullThrough": {
         "id": 69,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Cable Pull Through",
         "description": "Simmilar motion to kettlebell swing."
       },
       "DBLeaningForwardStepUp": {
         "id": 70,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Dumbell Leaning Forward Step Up",
         "description": ""
       },
       "GluteHamraise": {
         "id": 71,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Glute Ham Raise",
         "description": "Lean forward and over."
       },
       "BBRDL": {
         "id": 72,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Barbell RDL",
         "description": ""
       },
       "LowBarSquat": {
         "id": 73,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Low Bar Squat",
         "description": ""
       },
       "BBHipThrust": {
         "id": 74,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Glutes", "Hamstrings"],
         "name": "Barbell Hip Thrust",
         "description": ""
       },
       "HangingLegRaise": {
         "id": 75,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Abs"],
         "name": "Hanging Leg Raise",
         "description": "Bring butt up."
       },
       "ABWheelRollout": {
         "id": 76,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Abs"],
         "name": "Ab Wheel Rollout",
         "description": "Don't go all the way back."
       },
       "HangingKneeRaise": {
         "id": 77,
-        "importance": 0,
+        "importance": 0.1,
         "muscleGroup": ["Abs"],
         "name": "Hanging Knee Raise",
         "description": "Tilt pelvis up."
       },
       "HangingCorkscrew": {
         "id": 78,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Abs"],
         "name": "Hanging Corkscrew",
         "description": "Focus on pelvis alone."
       },
       "SingleSideSlowFarmerCarry": {
         "id": 79,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Abs"],
         "name": "Single Sided Slow Farmer Carry",
         "description": ""
       },
       "SideBridgeTwist": {
         "id": 80,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Abs"],
         "name": "Side Bridge Twist",
         "description": "Twist up from plank."
       },
       "LevitationCrunch": {
         "id": 81,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Abs"],
         "name": "Levitation Crunch",
         "description": "Only lift shoulder blades up."
       },
       "Swiper": {
         "id": 82,
-        "importance": 1,
+        "importance": 0.2,
         "muscleGroup": ["Abs"],
         "name": "Swiper",
         "description": "Like leg raise but focus on pelvis curl."
       },
       "GymnastTuck": {
         "id": 83,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Abs"],
         "name": "Gymnast Tuck",
         "description": "Focus on folding trunk at pelvis."
       },
       "SlidingTuck": {
         "id": 84,
-        "importance": 2,
+        "importance": 0.3,
         "muscleGroup": ["Abs"],
         "name": "Sliding Tuck",
         "description": "Side twist back."

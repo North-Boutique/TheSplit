@@ -15,7 +15,8 @@ import {
   Alert,
 } from 'react-native';
 import useAvaliableData from '../../hooks/useAvailableData';
-import {MuscleGroupNames, Workout} from '../../services/types';
+import {MuscleGroup, MuscleGroupNames, Workout} from '../../services/types';
+import {differenceBy, find} from 'lodash';
 
 function GenerateWorkout() {
   const [numberOfWorkouts, setNumberOfWorkouts] = useState<number>(0);
@@ -27,11 +28,7 @@ function GenerateWorkout() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (
-      savedData.defaultData &&
-      availableWorkouts &&
-      availableWorkouts?.length > 0
-    ) {
+    if (savedData.defaultData) {
       setAvailableWorkouts(Object.values(savedData.defaultData.workoutList));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +52,7 @@ function GenerateWorkout() {
   const weightMaker = (arr: Workout[]) => {
     return [].concat(
       // @ts-ignore
-      ...arr.map(obj => Array(Math.ceil(obj.imporance * 100)).fill(obj)),
+      ...arr.map(obj => Array(Math.ceil(obj.importance * 100)).fill(obj)),
     );
   };
 
@@ -76,7 +73,12 @@ function GenerateWorkout() {
       const selected: Workout[] = [];
       filteredWorkouts.forEach((_: Workout) => {
         if (selected.length <= numberOfWorkouts) {
-          selected.push(pick(filteredWorkouts));
+          const forceNoDuplicates = differenceBy(
+            filteredWorkouts,
+            selected,
+            (el: Workout) => el.id,
+          );
+          selected.push(pick(forceNoDuplicates));
         }
       });
       return selected;
@@ -85,12 +87,19 @@ function GenerateWorkout() {
   }, [availableWorkouts, muscleGroup, numberOfWorkouts, pick, workoutName]);
 
   const handleSubmit = useCallback(() => {
-    if (muscleGroup?.length !== 0 && workoutName.length >= 3) {
+    if (muscleGroup && muscleGroup.length !== 0 && workoutName.length >= 3) {
       const selected = genWorkout();
       updateData({
         key: 'generatedWorkouts',
         name: workoutName,
-        data: {excersiseIds: selected.map((el: Workout) => el.id)},
+        data: {
+          workouts: selected,
+          muscleGroups: muscleGroup.map((el: MuscleGroupNames) => ({
+            ...(find(savedData.defaultData.muscleGroups, {
+              name: el,
+            }) as MuscleGroup),
+          })),
+        },
       })
         .then((result: any) => {
           if (!result) {
@@ -98,12 +107,21 @@ function GenerateWorkout() {
           } else {
             Alert.alert(`Created ${workoutName} Workout`);
             // @ts-ignore
-            navigation.navigate('Home');
+            navigation.navigate('Home', {
+              recentlyCreated: true,
+            });
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.warn(err));
     }
-  }, [genWorkout, muscleGroup?.length, navigation, updateData, workoutName]);
+  }, [
+    genWorkout,
+    muscleGroup,
+    navigation,
+    savedData.defaultData.muscleGroups,
+    updateData,
+    workoutName,
+  ]);
 
   return (
     <ScrollView w="100%" m={0} p={5}>

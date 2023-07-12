@@ -32,7 +32,7 @@ function useAvaliableData() {
     }
   }, [updateInMemory]);
 
-  return {savedData, updateData};
+  return {savedData, updateData, setSaved};
 }
 
 export default useAvaliableData;

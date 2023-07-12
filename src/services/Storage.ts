@@ -16,10 +16,18 @@ const updateUserData = async (
       userData.generatedSplits = [...userData.generatedSplits, value.data];
       break;
     case 'generatedWorkouts':
-      userData.generatedWorkouts = [
-        ...userData.generatedWorkouts,
-        {name: value.name, excersiseIds: value.data.excersiseIds},
-      ];
+      let today: Date | string = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      const yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
+      const newValue = {
+        name: value.name,
+        workouts: value.data.workouts,
+        createdAt: today,
+        muscleGroups: value.data.muscleGroups,
+      };
+      userData.generatedWorkouts.push(newValue);
       break;
   }
   try {

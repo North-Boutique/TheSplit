@@ -8,6 +8,7 @@ import Workouts from './src/components/Workouts/Workouts';
 import Landing from './src/components/Landing/Landing';
 import DEFAULTS from './src/db/DEFAULTS.json';
 import {getData, seedUserData} from './src/services/Storage';
+import ShowWorkoutDetails from './src/components/Workouts/ShowWorkoutDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ const App = () => {
           <Stack.Screen name="Splits" component={Splits} />
           <Stack.Screen name="Create New" component={CreateNew} />
           <Stack.Screen name="Workouts" component={Workouts} />
+          <Stack.Screen name="Workout Details" component={ShowWorkoutDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
