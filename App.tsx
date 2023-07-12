@@ -9,6 +9,7 @@ import Landing from './src/components/Landing/Landing';
 import DEFAULTS from './src/db/DEFAULTS.json';
 import {getData, seedUserData} from './src/services/Storage';
 import ShowWorkoutDetails from './src/components/Workouts/ShowWorkoutDetails';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,17 +26,22 @@ const App = () => {
   }, []);
 
   return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Landing} />
-          <Stack.Screen name="Splits" component={Splits} />
-          <Stack.Screen name="Create New" component={CreateNew} />
-          <Stack.Screen name="Workouts" component={Workouts} />
-          <Stack.Screen name="Workout Details" component={ShowWorkoutDetails} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </NativeBaseProvider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Landing} />
+            <Stack.Screen name="Splits" component={Splits} />
+            <Stack.Screen name="Create New" component={CreateNew} />
+            <Stack.Screen name="Workouts" component={Workouts} />
+            <Stack.Screen
+              name="Workout Details"
+              component={ShowWorkoutDetails}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </GestureHandlerRootView>
   );
 };
 export default App;
