@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="8wk-dF-gID">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" semanticContentAttribute="spatial" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" image="Image" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8wk-dF-gID">
                                 <rect key="frame" x="-55" y="-9" width="500" height="885"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="default"/>
@@ -71,7 +71,7 @@
     <color key="tintColor" systemColor="systemBackgroundColor"/>
     <resources>
         <image name="Image" width="166.66667175292969" height="333.33334350585938"/>
-        <image name="NorthBoutiqueLogo" width="141" height="142"/>
+        <image name="NorthBoutiqueLogo" width="47" height="47.333332061767578"/>
         <image name="dumbbell.fill" catalog="system" width="128" height="72"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
