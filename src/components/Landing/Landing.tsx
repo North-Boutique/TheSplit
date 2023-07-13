@@ -23,6 +23,7 @@ function Landing({route, navigation}: LandingScreenProps) {
     ) {
       setSaved();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation, params]);
 
   useEffect(() => {

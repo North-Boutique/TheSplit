@@ -2,7 +2,7 @@ import {Box, CheckIcon, Select, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import BottomTabBar from '../Navigation/BottomTabBar';
 import {CreateNewProps, GeneratorTypes} from './types';
-import GenerateSplit from './GenerateSplit';
+// import GenerateSplit from './GenerateSplit';
 import GenerateWorkout from './GenerateWorkout';
 
 function CreateNew({route}: CreateNewProps) {
@@ -37,12 +37,12 @@ function CreateNew({route}: CreateNewProps) {
             onValueChange={(itemValue: string) =>
               setGeneratorType(itemValue as GeneratorTypes)
             }>
-            <Select.Item label="New Split" value="Split" />
+            {/* <Select.Item label="New Split" value="Split" /> */}
             <Select.Item label="New Workout" value="Workout" />
           </Select>
         </Box>
         <Box width={'100%'} safeAreaX={5} safeAreaTop={5}>
-          {generatorType === 'Split' && <GenerateSplit />}
+          {/* {generatorType === 'Split' && <GenerateSplit />} */}
           {generatorType === 'Workout' && <GenerateWorkout />}
         </Box>
       </VStack>
