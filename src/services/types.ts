@@ -36,6 +36,7 @@ export type Workout = {
   muscleGroup: MuscleGroupNames[];
   name: string;
   description: string;
+  long?: string;
 };
 
 export type WorkoutList = {
@@ -43,7 +44,7 @@ export type WorkoutList = {
 };
 
 export type WorkoutByReference = {
-  id: number;
+  id: string;
   name: string;
   workouts: Workout[];
   createdAt: string;

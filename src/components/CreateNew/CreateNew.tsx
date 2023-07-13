@@ -1,12 +1,20 @@
 import {Box, CheckIcon, Select, Text, VStack} from 'native-base';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BottomTabBar from '../Navigation/BottomTabBar';
-import {GeneratorTypes} from './types';
+import {CreateNewProps, GeneratorTypes} from './types';
 import GenerateSplit from './GenerateSplit';
 import GenerateWorkout from './GenerateWorkout';
 
-function CreateNew() {
+function CreateNew({route}: CreateNewProps) {
+  const params = route.params;
   const [generatorType, setGeneratorType] = useState<GeneratorTypes>('None');
+
+  useEffect(() => {
+    if (params?.genType) {
+      setGeneratorType(params.genType);
+    }
+  }, [params, route]);
+
   return (
     <Box height={'100%'} width={'100%'} safeArea safeAreaBottom>
       <VStack flex={1}>

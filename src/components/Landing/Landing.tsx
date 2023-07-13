@@ -1,20 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {Box, Center, FlatList, HStack, Text, VStack} from 'native-base';
+import {Box, FlatList, HStack, Text, VStack} from 'native-base';
 import BottomTabBar from '../Navigation/BottomTabBar';
 import useAvaliableData from '../../hooks/useAvailableData';
 import {WorkoutByReference} from '../../services/types';
-import {useNavigation} from '@react-navigation/native';
 import {Animated, TouchableHighlight} from 'react-native';
 import {RectButton, Swipeable} from 'react-native-gesture-handler';
+import {findIndex} from 'lodash';
+import SwitchHeader from '../Library/Header/SwitchHeader';
+import {LandingScreenProps} from './types';
 
-// @ts-ignore
-function Landing({route}) {
-  const navigator = useNavigation();
+function Landing({route, navigation}: LandingScreenProps) {
   const params = route?.params;
   const [renderedData, setRenderedData] = useState<WorkoutByReference[]>();
   const [dataToBeChanged, setDataToBeChanged] = useState<boolean>(false);
-  const {savedData, setSaved} = useAvaliableData();
+  const {savedData, setSaved, deleteWorkout} = useAvaliableData();
 
   useEffect(() => {
     if (
@@ -23,7 +23,7 @@ function Landing({route}) {
     ) {
       setSaved();
     }
-  }, [navigator, setSaved, params, savedData.defaultData.muscleGroups.length]);
+  }, [navigation, params]);
 
   useEffect(() => {
     console.log(savedData);
@@ -41,11 +41,23 @@ function Landing({route}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [savedData]);
 
-  // const deleteSavedWorkout = () => {};
+  const deleteSavedWorkout = (identifier: string) => {
+    if (
+      findIndex(
+        savedData.generatedWorkouts,
+        (el: WorkoutByReference) => el.id === identifier,
+      ) > -1
+    ) {
+      deleteWorkout(identifier).then(() => {
+        setSaved();
+      });
+    }
+  };
 
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<string | number>,
     dragX: Animated.AnimatedInterpolation<string | number>,
+    id: string,
   ) => {
     const trans = dragX.interpolate({
       inputRange: [0, 50, 100, 101],
@@ -67,7 +79,7 @@ function Landing({route}) {
         }}
         activeOpacity={0.6}
         underlayColor="#ffe4e6"
-        onPress={() => {}}>
+        onPress={() => deleteSavedWorkout(id)}>
         <Animated.View
           style={[
             {
@@ -95,11 +107,7 @@ function Landing({route}) {
 
   return (
     <VStack flex={1} justifyContent="space-between">
-      <Center>
-        <Text mt={5} mb={5} fontWeight={700}>
-          {!renderedData ? 'Create a workout to see it here!' : 'Workouts'}
-        </Text>
-      </Center>
+      <SwitchHeader renderedData={renderedData} type="Workout" />
       {renderedData && renderedData.length > 0 && (
         <FlatList
           data={renderedData}
@@ -110,13 +118,18 @@ function Landing({route}) {
                 marginHorizontal: 20,
                 marginBottom: 4,
               }}
-              renderRightActions={renderRightActions}>
+              renderRightActions={(
+                progress: Animated.AnimatedInterpolation<string | number>,
+                dragX: Animated.AnimatedInterpolation<string | number>,
+              ) => renderRightActions(progress, dragX, item.id)}>
               <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor="#DDDDDD"
                 onPress={() =>
                   // @ts-ignore
-                  navigator.navigate('Workout Details', {selectedWorkout: item})
+                  navigation.navigate('Workout Details', {
+                    selectedWorkout: item,
+                  })
                 }>
                 <Box
                   backgroundColor={'#f5f5f5'}

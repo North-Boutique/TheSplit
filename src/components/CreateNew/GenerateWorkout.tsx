@@ -31,7 +31,6 @@ function GenerateWorkout() {
     if (savedData.defaultData) {
       setAvailableWorkouts(Object.values(savedData.defaultData.workoutList));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [savedData]);
 
   useEffect(() => {
@@ -126,7 +125,6 @@ function GenerateWorkout() {
   return (
     <ScrollView w="100%" m={0} p={5}>
       <Box>
-        <Text>Generate Workout</Text>
         <Box alignItems="center" w="100%">
           <Text textAlign="center">Workout Name: {workoutName}</Text>
           <Input
@@ -136,11 +134,13 @@ function GenerateWorkout() {
             }
             variant="underlined"
             placeholder="Name"
+            mb={5}
           />
           <Text textAlign="center">{numberOfWorkouts} Excersies</Text>
           <Slider
             minValue={5}
             maxValue={15}
+            mb={5}
             colorScheme="indigo"
             onChangeEnd={v => {
               v && setNumberOfWorkouts(Math.floor(v));
@@ -150,7 +150,9 @@ function GenerateWorkout() {
             </Slider.Track>
             <Slider.Thumb />
           </Slider>
-          <Text textAlign="center">Muscle Group(s)</Text>
+          <Text mb={2} textAlign="center">
+            Muscle Group(s)
+          </Text>
           <Checkbox.Group
             onChange={(values: MuscleGroupNames[]) => {
               setMuscleGroup(values);
@@ -158,7 +160,8 @@ function GenerateWorkout() {
             // value={muscleGroup}
             accessibilityLabel="choose muscle group"
             display="inline-flex"
-            justifyContent={'space-evenly'}>
+            justifyContent={'space-evenly'}
+            mb={5}>
             <Checkbox
               isDisabled={isDisabled('Quads') && maxSelected}
               value="Quads">

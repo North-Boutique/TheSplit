@@ -4,7 +4,10 @@ import {
   UpdateUserDataSplits,
   UpdateUserDataWorkouts,
   UserData,
+  WorkoutByReference,
 } from './types';
+import uuid from 'uuid-random';
+import {findIndex} from 'lodash';
 
 const updateUserData = async (
   value: UpdateUserDataSplits | UpdateUserDataWorkouts,
@@ -22,6 +25,7 @@ const updateUserData = async (
       const yyyy = today.getFullYear();
       today = mm + '/' + dd + '/' + yyyy;
       const newValue = {
+        id: uuid(),
         name: value.name,
         workouts: value.data.workouts,
         createdAt: today,
@@ -33,6 +37,27 @@ const updateUserData = async (
   try {
     const jsonValue = JSON.stringify(userData);
     await AsyncStorage.mergeItem('@LOCAL_USER', jsonValue);
+    return true;
+  } catch (e) {
+    // saving error
+    return e;
+  }
+};
+
+const deleteSavedWorkout = async (
+  identifer: string,
+  currentUserData: UserData,
+) => {
+  const userData = currentUserData;
+  console.log(userData.generatedWorkouts);
+  const idx = findIndex(
+    userData.generatedWorkouts,
+    (el: WorkoutByReference) => el.id === identifer,
+  );
+  userData.generatedWorkouts.splice(idx, 1);
+  try {
+    const jsonValue = JSON.stringify(userData);
+    await AsyncStorage.setItem('@LOCAL_USER', jsonValue);
     return true;
   } catch (e) {
     // saving error
@@ -60,4 +85,4 @@ const seedUserData = async (data: any) => {
   }
 };
 
-export {updateUserData, getData, seedUserData};
+export {updateUserData, getData, seedUserData, deleteSavedWorkout};

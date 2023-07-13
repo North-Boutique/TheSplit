@@ -5,7 +5,7 @@ import {
   UpdateUserDataWorkouts,
   UserData,
 } from '../services/types';
-import {getData, updateUserData} from '../services/Storage';
+import {getData, updateUserData, deleteSavedWorkout} from '../services/Storage';
 
 function useAvaliableData() {
   const [savedData, setSavedData] = useState<UserData>(DEFAULT_USER_DATA);
@@ -15,6 +15,14 @@ function useAvaliableData() {
     async (value: UpdateUserDataSplits | UpdateUserDataWorkouts) => {
       setUpdateInMemory(true);
       return await updateUserData(value, savedData);
+    },
+    [savedData],
+  );
+
+  const deleteWorkout = useCallback(
+    async (identifier: string) => {
+      setUpdateInMemory(true);
+      return await deleteSavedWorkout(identifier, savedData);
     },
     [savedData],
   );
@@ -32,7 +40,7 @@ function useAvaliableData() {
     }
   }, [updateInMemory]);
 
-  return {savedData, updateData, setSaved};
+  return {savedData, updateData, setSaved, deleteWorkout};
 }
 
 export default useAvaliableData;

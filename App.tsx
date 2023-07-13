@@ -10,8 +10,9 @@ import DEFAULTS from './src/db/DEFAULTS.json';
 import {getData, seedUserData} from './src/services/Storage';
 import ShowWorkoutDetails from './src/components/Workouts/ShowWorkoutDetails';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {RootStackParamList} from './navigationTypes';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   useEffect(() => {
