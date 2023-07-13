@@ -17,7 +17,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
   useEffect(() => {
     getData().then(data => {
-      if (data.defaultData.muscleGroups.length === 0) {
+      if (
+        data.defaultData.muscleGroups.length === 0 ||
+        data.defaultData.workoutList.length !==
+          DEFAULTS.defaultData.workoutList.length
+      ) {
         const userdata: any = {
           ...DEFAULTS,
         };

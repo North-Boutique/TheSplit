@@ -39,9 +39,7 @@ export type Workout = {
   long?: string;
 };
 
-export type WorkoutList = {
-  [name: string]: Workout;
-};
+export type WorkoutList = Workout[];
 
 export type WorkoutByReference = {
   id: string;
@@ -112,6 +110,6 @@ export const DEFAULT_USER_DATA = {
   generatedWorkouts: [],
   defaultData: {
     muscleGroups: [],
-    workoutList: {},
+    workoutList: [],
   },
 };
