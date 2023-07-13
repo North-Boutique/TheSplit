@@ -43,6 +43,7 @@ export type WorkoutList = {
 };
 
 export type WorkoutByReference = {
+  id: number;
   name: string;
   workouts: Workout[];
   createdAt: string;

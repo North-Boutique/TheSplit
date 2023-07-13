@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "north-boutique-logo-without-wrapping.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "north-boutique-logo-without-wrapping 1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "north-boutique-logo-without-wrapping 2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
