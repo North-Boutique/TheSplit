@@ -3,8 +3,9 @@ import React, {useEffect, useState} from 'react';
 import BottomTabBar from '../Navigation/BottomTabBar';
 import {Workout, ImportantMappings} from '../../services/types';
 import useAvaliableData from '../../hooks/useAvailableData';
+import {ExercisesProps} from './types';
 
-function Workouts() {
+function Exercises({navigation}: ExercisesProps) {
   const [renderedData, setRenderedData] = useState<Workout[]>();
   const [dataToBeChanged, setDataToBeChanged] = useState<boolean>(false);
   const {savedData} = useAvaliableData();
@@ -61,9 +62,9 @@ function Workouts() {
         )}
         keyExtractor={item => item.id.toString()}
       />
-      <BottomTabBar active="Workouts" />
+      <BottomTabBar navigation={navigation} active="Exercises" />
     </VStack>
   );
 }
 
-export default Workouts;
+export default Exercises;

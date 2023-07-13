@@ -1,18 +1,18 @@
 import * as React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {HStack, VStack, IconButton, Icon, Text} from 'native-base';
 import styles from './style';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../../navigationTypes';
 
 type BottomTabBarProps = {
-  active: 'Home' | 'Splits' | 'CreateNew' | 'Workouts';
+  active: 'Home' | 'Splits' | 'CreateNew' | 'Exercises';
+  navigation: NativeStackNavigationProp<RootStackParamList, any, undefined>;
 };
 
-const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
-  const navigation = useNavigation();
-
+const BottomTabBar: React.FC<BottomTabBarProps> = ({active, navigation}) => {
   return (
     <HStack
       bg="#4B9AE7"
@@ -95,7 +95,7 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
                 size={30}
               />
             }
-            onPress={() => navigation.navigate('CreateNew')}
+            onPress={() => navigation.navigate('Create New')}
           />
           <Text textAlign={'center'} color="white" fontSize="md" mt={-3}>
             Create New
@@ -103,10 +103,10 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
         </TouchableOpacity>
       </VStack>
       <VStack
-        style={active === 'Workouts' ? styles.shadowProp : []}
+        style={active === 'Exercises' ? styles.shadowProp : []}
         space={2}
         alignItems="center">
-        <TouchableOpacity onPress={() => navigation.navigate('Workouts')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Exercises')}>
           <IconButton
             disabled
             variant="ghost"
@@ -114,7 +114,9 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
               <Icon
                 as={
                   <Ionicons
-                    name={active === 'Workouts' ? 'body-sharp' : 'body-outline'}
+                    name={
+                      active === 'Exercises' ? 'body-sharp' : 'body-outline'
+                    }
                   />
                 }
                 color="white"
@@ -123,7 +125,7 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({active}) => {
             }
           />
           <Text textAlign={'center'} color="white" fontSize="md" mt={-3}>
-            Workouts
+            Exercises
           </Text>
         </TouchableOpacity>
       </VStack>

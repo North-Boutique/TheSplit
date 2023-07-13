@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {ImportantMappings, WorkoutByReference} from '../../services/types';
 
 // @ts-ignore
-function ShowWorkoutDetails({route}) {
+function ShowExerciseDetails({route}) {
   const params = route.params;
   const [renderedData, setRenderedData] = useState<WorkoutByReference>();
 
@@ -75,4 +75,4 @@ function ShowWorkoutDetails({route}) {
   );
 }
 
-export default ShowWorkoutDetails;
+export default ShowExerciseDetails;

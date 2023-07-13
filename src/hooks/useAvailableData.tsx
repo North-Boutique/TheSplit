@@ -13,10 +13,10 @@ function useAvaliableData() {
 
   const updateData = useCallback(
     async (value: UpdateUserDataSplits | UpdateUserDataWorkouts) => {
-      setUpdateInMemory(true);
-      return await updateUserData(value, savedData);
+      const recentData = await getData();
+      return await updateUserData(value, recentData);
     },
-    [savedData],
+    [],
   );
 
   const deleteWorkout = useCallback(

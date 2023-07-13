@@ -136,7 +136,7 @@ function GenerateWorkout() {
             placeholder="Name"
             mb={5}
           />
-          <Text textAlign="center">{numberOfWorkouts} Excersies</Text>
+          <Text textAlign="center">{numberOfWorkouts} Exercises</Text>
           <Slider
             minValue={5}
             maxValue={15}

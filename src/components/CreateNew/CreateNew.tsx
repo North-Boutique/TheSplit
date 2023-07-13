@@ -5,7 +5,7 @@ import {CreateNewProps, GeneratorTypes} from './types';
 // import GenerateSplit from './GenerateSplit';
 import GenerateWorkout from './GenerateWorkout';
 
-function CreateNew({route}: CreateNewProps) {
+function CreateNew({route, navigation}: CreateNewProps) {
   const params = route.params;
   const [generatorType, setGeneratorType] = useState<GeneratorTypes>('None');
 
@@ -47,7 +47,7 @@ function CreateNew({route}: CreateNewProps) {
         </Box>
       </VStack>
       <Box width={'100%'} position={'absolute'} bottom={0}>
-        <BottomTabBar active="CreateNew" />
+        <BottomTabBar navigation={navigation} active="CreateNew" />
       </Box>
     </Box>
   );

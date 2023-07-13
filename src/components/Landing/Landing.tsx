@@ -176,7 +176,7 @@ function Landing({route, navigation}: LandingScreenProps) {
         />
       )}
 
-      <BottomTabBar active="Home" />
+      <BottomTabBar navigation={navigation} active="Home" />
     </VStack>
   );
 }

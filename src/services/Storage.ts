@@ -36,7 +36,7 @@ const updateUserData = async (
   }
   try {
     const jsonValue = JSON.stringify(userData);
-    await AsyncStorage.mergeItem('@LOCAL_USER', jsonValue);
+    await AsyncStorage.setItem('@LOCAL_USER', jsonValue);
     return true;
   } catch (e) {
     // saving error

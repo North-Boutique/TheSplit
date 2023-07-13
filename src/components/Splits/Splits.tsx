@@ -7,7 +7,7 @@ import UnderConstruction from '../Library/UnderConstruction/UnderConstruction';
 import BottomTabBar from '../Navigation/BottomTabBar';
 import {SplitsProps} from './types';
 
-function Split({}: SplitsProps) {
+function Split({navigation}: SplitsProps) {
   // const [renderedData, setRenderedData] = useState<SplitGroup>();
   // const [dataToBeChanged, setDataToBeChanged] = useState<boolean>(false);
   // const {savedData} = useAvaliableData();
@@ -24,7 +24,7 @@ function Split({}: SplitsProps) {
     <VStack flex={1} justifyContent="space-between">
       {/* <SwitchHeader renderedData={renderedData} type="Split" /> */}
       <UnderConstruction />
-      <BottomTabBar active="Splits" />
+      <BottomTabBar navigation={navigation} active="Splits" />
     </VStack>
   );
 }
