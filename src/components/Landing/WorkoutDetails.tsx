@@ -1,16 +1,16 @@
 import {Box, FlatList, HStack, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {ImportantMappings, WorkoutByReference} from '../../services/types';
-import {ExerciseDetailsProps} from './types';
+import {WorkoutDetailsProps} from './types';
 
 // @ts-ignore
-function ShowExerciseDetails({route}: ExerciseDetailsProps) {
+function WorkoutDetails({route}: WorkoutDetailsProps) {
   const params = route.params;
   const [renderedData, setRenderedData] = useState<WorkoutByReference>();
 
   useEffect(() => {
-    if (params?.selectedExercise) {
-      setRenderedData(params.selectedExercise);
+    if (params?.selectedWorkout) {
+      setRenderedData(params.selectedWorkout);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -76,4 +76,4 @@ function ShowExerciseDetails({route}: ExerciseDetailsProps) {
   );
 }
 
-export default ShowExerciseDetails;
+export default WorkoutDetails;

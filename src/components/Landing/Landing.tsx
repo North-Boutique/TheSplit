@@ -12,46 +12,41 @@ import {LandingScreenProps} from './types';
 
 function Landing({route, navigation}: LandingScreenProps) {
   const params = route?.params;
-  const [renderedData, setRenderedData] = useState<WorkoutByReference[]>();
-  const [dataToBeChanged, setDataToBeChanged] = useState<boolean>(false);
-  const {savedData, setSaved, deleteWorkout} = useAvaliableData();
+  const [renderedWorkouts, setRenderedWorkouts] =
+    useState<WorkoutByReference[]>();
+  const [refreshed, setRefreshed] = useState<boolean>(false);
+  const {getSavedWorkouts, deleteWorkout} = useAvaliableData();
 
   useEffect(() => {
-    if (
-      params?.recentlyCreated &&
-      savedData.defaultData.muscleGroups.length > 0
-    ) {
-      setSaved();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigation, params]);
-
-  useEffect(() => {
-    console.log(savedData);
-    if (savedData.defaultData.muscleGroups.length === 0) {
-      setSaved();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getSavedWorkouts((data: WorkoutByReference[]) => {
+      setRenderedWorkouts(data);
+    });
   }, []);
 
   useEffect(() => {
-    if (savedData.defaultData.muscleGroups.length > 0) {
-      setDataToBeChanged(!dataToBeChanged);
-      setRenderedData(savedData.generatedWorkouts);
+    if (params?.recentlyCreated) {
+      getSavedWorkouts((data: WorkoutByReference[]) => {
+        setRenderedWorkouts(data);
+      });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [savedData]);
+  }, [navigation, params, route]);
 
   const deleteSavedWorkout = (identifier: string) => {
     if (
+      renderedWorkouts &&
       findIndex(
-        savedData.generatedWorkouts,
+        renderedWorkouts,
         (el: WorkoutByReference) => el.id === identifier,
       ) > -1
     ) {
-      deleteWorkout(identifier).then(() => {
-        setSaved();
-      });
+      deleteWorkout(
+        identifier,
+        renderedWorkouts,
+        (data: WorkoutByReference[]) => {
+          setRenderedWorkouts(data);
+          setRefreshed((r: boolean) => !r);
+        },
+      );
     }
   };
 
@@ -108,10 +103,11 @@ function Landing({route, navigation}: LandingScreenProps) {
 
   return (
     <VStack flex={1} justifyContent="space-between">
-      <SwitchHeader renderedData={renderedData} type="Workout" />
-      {renderedData && renderedData.length > 0 && (
+      <SwitchHeader renderedData={renderedWorkouts} type="Workout" />
+      {renderedWorkouts && renderedWorkouts.length > 0 && (
         <FlatList
-          data={renderedData}
+          data={renderedWorkouts}
+          extraData={refreshed}
           renderItem={({item}) => (
             <Swipeable
               overshootRight={false}

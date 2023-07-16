@@ -49,14 +49,14 @@
         "description": "Feet lower on machine; Focus on depth"
       },
       {
-        "id": 0.2,
+        "id": 1,
         "importance": 0.1,
         "muscleGroup": ["Quads"],
         "name": "Sled Push\\Pull",
         "description": "Increase Volume"
       },
       {
-        "id": 0.3,
+        "id": 2,
         "importance": 0.1,
         "muscleGroup": ["Quads"],
         "name": "Dumbell Step Up",

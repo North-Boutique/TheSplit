@@ -1,46 +1,67 @@
 import {useCallback, useEffect, useState} from 'react';
 import {
-  DEFAULT_USER_DATA,
+  DefaultsDefinition,
+  SplitGroup,
   UpdateUserDataSplits,
   UpdateUserDataWorkouts,
-  UserData,
+  WorkoutByReference,
 } from '../services/types';
-import {getData, updateUserData, deleteSavedWorkout} from '../services/Storage';
+import {
+  deleteSavedWorkout,
+  getDefaults,
+  getSplits,
+  getWorkouts,
+  updateSplits,
+  updateWorkouts,
+} from '../services/Storage';
 
 function useAvaliableData() {
-  const [savedData, setSavedData] = useState<UserData>(DEFAULT_USER_DATA);
-  const [updateInMemory, setUpdateInMemory] = useState<boolean>(true);
-
-  const updateData = useCallback(
-    async (value: UpdateUserDataSplits | UpdateUserDataWorkouts) => {
-      const recentData = await getData();
-      return await updateUserData(value, recentData);
-    },
-    [],
-  );
-
-  const deleteWorkout = useCallback(
-    async (identifier: string) => {
-      setUpdateInMemory(true);
-      return await deleteSavedWorkout(identifier, savedData);
-    },
-    [savedData],
-  );
-
-  const setSaved = () => {
-    getData().then(data => {
-      setSavedData(data);
-    });
+  const getSavedDefaults = async (cb: (data: DefaultsDefinition) => void) => {
+    const data = await getDefaults();
+    cb(data);
+  };
+  const getSavedWorkouts = async (cb: (data: WorkoutByReference[]) => void) => {
+    const data = await getWorkouts();
+    cb(data);
+  };
+  const getSavedSplits = async (cb: (data: SplitGroup) => void) => {
+    const data = await getSplits();
+    cb(data);
   };
 
-  useEffect(() => {
-    if (updateInMemory) {
-      setSaved();
-      setUpdateInMemory(false);
-    }
-  }, [updateInMemory]);
+  const updateSavedWorkouts = async (
+    value: UpdateUserDataWorkouts,
+    currentWorkouts: WorkoutByReference[],
+  ) => {
+    await updateWorkouts(value, currentWorkouts);
+    return true;
+  };
 
-  return {savedData, updateData, setSaved, deleteWorkout};
+  const updateSavedSplits = async (
+    value: UpdateUserDataSplits,
+    current: SplitGroup,
+  ) => {
+    await updateSplits(value, current);
+    return true;
+  };
+
+  const deleteWorkout = async (
+    identifer: string,
+    savedWorkouts: WorkoutByReference[],
+    cb: (data: WorkoutByReference[]) => void,
+  ) => {
+    const newWorkouts = await deleteSavedWorkout(identifer, savedWorkouts);
+    cb(newWorkouts);
+  };
+
+  return {
+    getSavedWorkouts,
+    updateSavedWorkouts,
+    getSavedSplits,
+    updateSavedSplits,
+    deleteWorkout,
+    getSavedDefaults,
+  };
 }
 
 export default useAvaliableData;

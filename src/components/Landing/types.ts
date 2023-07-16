@@ -5,3 +5,8 @@ export type LandingScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'Home'
 >;
+
+export type WorkoutDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Workout Details'
+>;

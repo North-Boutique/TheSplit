@@ -15,23 +15,37 @@ import {
   Alert,
 } from 'react-native';
 import useAvaliableData from '../../hooks/useAvailableData';
-import {MuscleGroup, MuscleGroupNames, Workout} from '../../services/types';
+import {
+  DefaultsDefinition,
+  MuscleGroup,
+  MuscleGroupNames,
+  Workout,
+  WorkoutByReference,
+} from '../../services/types';
 import {differenceBy, find} from 'lodash';
 
 function GenerateWorkout() {
+  const [defaultData, setDefaultData] = useState<DefaultsDefinition>();
+  const [userSavedWorkouts, setUserSavedWorkouts] =
+    useState<WorkoutByReference[]>();
   const [numberOfWorkouts, setNumberOfWorkouts] = useState<number>(0);
   const [workoutName, setWorkoutName] = useState<string>('');
   const [muscleGroup, setMuscleGroup] = useState<MuscleGroupNames[]>();
   const [maxSelected, setMaxSelected] = useState<boolean>(false);
   const [availableWorkouts, setAvailableWorkouts] = useState<Workout[]>();
-  const {savedData, updateData} = useAvaliableData();
+  const {getSavedDefaults, updateSavedWorkouts, getSavedWorkouts} =
+    useAvaliableData();
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (savedData.defaultData) {
-      setAvailableWorkouts(Object.values(savedData.defaultData.workoutList));
-    }
-  }, [savedData]);
+    getSavedDefaults((data: DefaultsDefinition) => {
+      setAvailableWorkouts(data.workoutList);
+      setDefaultData(data);
+    });
+    getSavedWorkouts((data: WorkoutByReference[]) => {
+      setUserSavedWorkouts(data);
+    });
+  }, []);
 
   useEffect(() => {
     if (muscleGroup) {
@@ -68,7 +82,6 @@ function GenerateWorkout() {
           muscleGroup.indexOf(el.muscleGroup[1]) > -1
         );
       });
-      console.log(filteredWorkouts);
       const selected: Workout[] = [];
       filteredWorkouts.forEach((_: Workout) => {
         if (selected.length <= numberOfWorkouts) {
@@ -86,20 +99,29 @@ function GenerateWorkout() {
   }, [availableWorkouts, muscleGroup, numberOfWorkouts, pick, workoutName]);
 
   const handleSubmit = useCallback(() => {
-    if (muscleGroup && muscleGroup.length !== 0 && workoutName.length >= 3) {
+    if (
+      muscleGroup &&
+      muscleGroup.length !== 0 &&
+      workoutName.length >= 3 &&
+      defaultData &&
+      userSavedWorkouts
+    ) {
       const selected = genWorkout();
-      updateData({
-        key: 'generatedWorkouts',
-        name: workoutName,
-        data: {
-          workouts: selected,
-          muscleGroups: muscleGroup.map((el: MuscleGroupNames) => ({
-            ...(find(savedData.defaultData.muscleGroups, {
-              name: el,
-            }) as MuscleGroup),
-          })),
+      console.log(selected);
+      updateSavedWorkouts(
+        {
+          name: workoutName,
+          data: {
+            workouts: selected,
+            muscleGroups: muscleGroup.map((el: MuscleGroupNames) => ({
+              ...(find(defaultData.muscleGroups, {
+                name: el,
+              }) as MuscleGroup),
+            })),
+          },
         },
-      })
+        userSavedWorkouts,
+      )
         .then((result: any) => {
           if (!result) {
             Alert.alert('Failed To Create Workout', result);
@@ -114,11 +136,12 @@ function GenerateWorkout() {
         .catch(err => console.warn(err));
     }
   }, [
+    defaultData,
     genWorkout,
     muscleGroup,
     navigation,
-    savedData.defaultData.muscleGroups,
-    updateData,
+    updateSavedWorkouts,
+    userSavedWorkouts,
     workoutName,
   ]);
 

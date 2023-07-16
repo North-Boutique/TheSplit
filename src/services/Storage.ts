@@ -1,63 +1,108 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-  DEFAULT_USER_DATA,
+  DefaultsDefinition,
+  SplitGroup,
   UpdateUserDataSplits,
   UpdateUserDataWorkouts,
-  UserData,
   WorkoutByReference,
 } from './types';
 import uuid from 'uuid-random';
-import {findIndex} from 'lodash';
+import {remove} from 'lodash';
 
-const updateUserData = async (
-  value: UpdateUserDataSplits | UpdateUserDataWorkouts,
-  currentUserData: UserData,
+const updateSplits = async (
+  value: UpdateUserDataSplits,
+  current: SplitGroup,
 ) => {
-  const userData = currentUserData;
-  switch (value.key) {
-    case 'generatedSplits':
-      userData.generatedSplits = [...userData.generatedSplits, value.data];
-      break;
-    case 'generatedWorkouts':
-      let today: Date | string = new Date();
-      const dd = String(today.getDate()).padStart(2, '0');
-      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      const yyyy = today.getFullYear();
-      today = mm + '/' + dd + '/' + yyyy;
-      const newValue = {
-        id: uuid(),
-        name: value.name,
-        workouts: value.data.workouts,
-        createdAt: today,
-        muscleGroups: value.data.muscleGroups,
-      };
-      userData.generatedWorkouts.push(newValue);
-      break;
-  }
   try {
-    const jsonValue = JSON.stringify(userData);
-    await AsyncStorage.setItem('@LOCAL_USER', jsonValue);
-    return true;
-  } catch (e) {
-    // saving error
+    const splitsToSet = [...current, value.data];
+    await AsyncStorage.setItem('@LOCAL_SPLITS', JSON.stringify(splitsToSet));
+    return splitsToSet;
+  } catch (e: any) {
+    return e;
+  }
+};
+
+const updateWorkouts = async (
+  value: UpdateUserDataWorkouts,
+  current: WorkoutByReference[],
+): Promise<WorkoutByReference[]> => {
+  try {
+    let today: Date | string = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    const newValue = {
+      id: uuid(),
+      name: value.name,
+      workouts: value.data.workouts,
+      createdAt: today,
+      muscleGroups: value.data.muscleGroups,
+    };
+    const workoutsToSet = [...current, newValue];
+    await AsyncStorage.setItem(
+      '@LOCAL_WORKOUTS',
+      JSON.stringify(workoutsToSet),
+    );
+    return workoutsToSet;
+  } catch (e: any) {
     return e;
   }
 };
 
 const deleteSavedWorkout = async (
   identifer: string,
-  currentUserData: UserData,
-) => {
-  const userData = currentUserData;
-  console.log(userData.generatedWorkouts);
-  const idx = findIndex(
-    userData.generatedWorkouts,
-    (el: WorkoutByReference) => el.id === identifer,
-  );
-  userData.generatedWorkouts.splice(idx, 1);
+  current: WorkoutByReference[],
+): Promise<WorkoutByReference[]> => {
+  const userData = current;
+  remove(userData, (el: WorkoutByReference) => el.id === identifer);
+  console.log(userData, ' Saved Workouts');
   try {
     const jsonValue = JSON.stringify(userData);
-    await AsyncStorage.setItem('@LOCAL_USER', jsonValue);
+    await AsyncStorage.setItem('@LOCAL_WORKOUTS', jsonValue);
+    return userData;
+  } catch (e: any) {
+    // saving error
+    return e;
+  }
+};
+
+const getDefaults = async (): Promise<DefaultsDefinition> => {
+  try {
+    const def = (await AsyncStorage.getItem('@DEFAULTS')) as string;
+    return JSON.parse(def) as DefaultsDefinition;
+  } catch (e: any) {
+    // saving error
+    return e;
+  }
+};
+
+const getWorkouts = async (): Promise<WorkoutByReference[]> => {
+  try {
+    const wrk = (await AsyncStorage.getItem('@LOCAL_WORKOUTS')) as string;
+    return JSON.parse(wrk) as WorkoutByReference[];
+  } catch (e: any) {
+    // saving error
+    return e;
+  }
+};
+
+const getSplits = async (): Promise<SplitGroup> => {
+  try {
+    const spl = (await AsyncStorage.getItem('@LOCAL_SPLITS')) as string;
+    return JSON.parse(spl) as SplitGroup;
+  } catch (e: any) {
+    // saving error
+    return e;
+  }
+};
+
+const seedUserData = async (data: DefaultsDefinition) => {
+  try {
+    const defaultData = JSON.stringify(data);
+    await AsyncStorage.setItem('@DEFAULTS', defaultData);
+    await AsyncStorage.setItem('@LOCAL_WORKOUTS', '[]');
+    await AsyncStorage.setItem('@LOCAL_SPLITS', '[]');
     return true;
   } catch (e) {
     // saving error
@@ -65,24 +110,29 @@ const deleteSavedWorkout = async (
   }
 };
 
-const getData = async (): Promise<UserData> => {
+const firstLaunch = async () => {
   try {
-    const jsonValue = await AsyncStorage.getItem('@LOCAL_USER');
-    return jsonValue != null ? JSON.parse(jsonValue) : DEFAULT_USER_DATA;
-  } catch (e: string | any) {
-    // error reading value
-    return DEFAULT_USER_DATA;
-  }
-};
-
-const seedUserData = async (data: any) => {
-  try {
-    const jsonValue = JSON.stringify(data);
-    return await AsyncStorage.setItem('@LOCAL_USER', jsonValue);
-  } catch (e) {
+    let first = false;
+    await AsyncStorage.getItem('@FIRST_LAUNCH').then((value: string | null) => {
+      if (value === null) {
+        AsyncStorage.setItem('@FIRST_LAUNCH', 'true'); // No need to wait for `setItem` to finish, although you might want to handle errors
+        first = true;
+      }
+    });
+    return first;
+  } catch (e: any) {
     // saving error
     return e;
   }
 };
 
-export {updateUserData, getData, seedUserData, deleteSavedWorkout};
+export {
+  getDefaults,
+  getWorkouts,
+  getSplits,
+  seedUserData,
+  deleteSavedWorkout,
+  updateWorkouts,
+  updateSplits,
+  firstLaunch,
+};
