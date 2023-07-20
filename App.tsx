@@ -13,7 +13,6 @@ import ShowExerciseDetails from './src/components/Exercises/ShowExerciseDetails'
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {RootStackParamList} from './navigationTypes';
 import {MuscleGroups, WorkoutList} from './src/services/types';
-import FlipperAsyncStorage from 'rn-flipper-async-storage-advanced';
 import useAvaliableData from './src/hooks/useAvailableData';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -34,7 +33,6 @@ const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <NativeBaseProvider>
-        <FlipperAsyncStorage />
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Home" component={Landing} />
