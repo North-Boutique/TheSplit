@@ -25,14 +25,14 @@ export type MuscleGroupNames =
 export type MuscleGroups = MuscleGroup[];
 
 export const ImportantMappings = {
-  0: 'Mid',
-  1: 'Better',
-  2: 'Best',
+  0.1: 'Good',
+  0.2: 'Better',
+  0.3: 'Best',
 };
 
 export type Workout = {
   id: number;
-  importance: 0 | 1 | 2;
+  importance: 0.1 | 0.2 | 0.3;
   muscleGroup: MuscleGroupNames[];
   name: string;
   description: string;
@@ -85,6 +85,11 @@ export type Split = {
 
 export type SplitGroup = Split[];
 
+export type DefaultsDefinition = {
+  muscleGroups: MuscleGroups;
+  workoutList: WorkoutList;
+};
+
 export type UserData = {
   generatedWorkouts: WorkoutByReference[];
   generatedSplits: SplitGroup;
@@ -95,12 +100,10 @@ export type UserData = {
 };
 
 export type UpdateUserDataSplits = {
-  key: 'generatedSplits';
   data: Split;
 };
 
 export type UpdateUserDataWorkouts = {
-  key: 'generatedWorkouts';
   name: string;
   data: {workouts: Workout[]; muscleGroups: MuscleGroups};
 };
@@ -113,3 +116,13 @@ export const DEFAULT_USER_DATA = {
     workoutList: [],
   },
 };
+
+export type LocallyStoredKeys =
+  | '@DEFAULTS'
+  | '@LOCAL_WORKOUTS'
+  | '@LOCAL_SPLITS';
+
+export type GetDataReturns =
+  | DefaultsDefinition
+  | WorkoutByReference[]
+  | SplitGroup;

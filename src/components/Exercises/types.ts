@@ -5,3 +5,8 @@ export type ExercisesProps = NativeStackScreenProps<
   RootStackParamList,
   'Exercises'
 >;
+
+export type ExerciseDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Exercise Details'
+>;

@@ -1,36 +1,35 @@
+import {FlashList} from '@shopify/flash-list';
 import {Box, HStack, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import BottomTabBar from '../Navigation/BottomTabBar';
-import {
-  DefaultsDefinition,
-  ImportantMappings,
-  WorkoutList,
-} from '../../services/types';
-import useAvaliableData from '../../hooks/useAvailableData';
-import {ExercisesProps} from './types';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {exerciseListItem} from './styles';
-import {StyleProp, ViewStyle} from 'react-native';
-import {FlashList} from '@shopify/flash-list';
+import {StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
+import {ImportantMappings, WorkoutByReference} from '../../services/types';
+import {exerciseListItem} from '../Exercises/styles';
+import {WorkoutDetailsProps} from './types';
 
-function Exercises({navigation}: ExercisesProps) {
-  const [renderedExercises, setRenderedExercises] = useState<WorkoutList>();
-  const {getSavedDefaults} = useAvaliableData();
+function WorkoutDetails({route, navigation}: WorkoutDetailsProps) {
+  const params = route.params;
+  const [renderedData, setRenderedData] = useState<WorkoutByReference>();
 
   useEffect(() => {
-    getSavedDefaults((data: DefaultsDefinition) => {
-      setRenderedExercises(data.workoutList);
-    });
+    if (params?.selectedWorkout) {
+      setRenderedData(params.selectedWorkout);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <VStack flex={1} justifyContent="space-between">
-      <Box />
-      {renderedExercises && renderedExercises.length > 0 && (
+      <Box mt={5} mb={2} alignSelf="center">
+        {renderedData && (
+          <Text fontSize="2xl" fontWeight={700}>
+            {renderedData.name}
+          </Text>
+        )}
+      </Box>
+      {renderedData && renderedData.workouts.length > 0 && (
         <FlashList
           estimatedItemSize={100}
-          data={renderedExercises}
+          data={renderedData.workouts}
           renderItem={({item}) => (
             <TouchableOpacity
               onPress={() =>
@@ -40,7 +39,6 @@ function Exercises({navigation}: ExercisesProps) {
               }>
               <Box
                 style={exerciseListItem as StyleProp<ViewStyle>}
-                safeAreaX
                 borderBottomWidth="1"
                 _dark={{
                   borderColor: 'muted.50',
@@ -82,13 +80,11 @@ function Exercises({navigation}: ExercisesProps) {
               </Box>
             </TouchableOpacity>
           )}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={item => item.name}
         />
       )}
-
-      <BottomTabBar navigation={navigation} active="Exercises" />
     </VStack>
   );
 }
 
-export default Exercises;
+export default WorkoutDetails;
