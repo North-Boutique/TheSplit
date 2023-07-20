@@ -1,13 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import {
-  Box,
-  Button,
-  Checkbox,
-  Input,
-  ScrollView,
-  Slider,
-  Text,
-} from 'native-base';
+import {Box, Button, Flex, Input, Slider, Text} from 'native-base';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   NativeSyntheticEvent,
@@ -23,14 +15,17 @@ import {
   WorkoutByReference,
 } from '../../services/types';
 import {differenceBy, find} from 'lodash';
+import FilterGroup from '../Library/FilterGroup/FilterGroup';
 
 function GenerateWorkout() {
   const [defaultData, setDefaultData] = useState<DefaultsDefinition>();
   const [userSavedWorkouts, setUserSavedWorkouts] =
     useState<WorkoutByReference[]>();
-  const [numberOfWorkouts, setNumberOfWorkouts] = useState<number>(0);
+  const [numberOfWorkouts, setNumberOfWorkouts] = useState<number>(10);
   const [workoutName, setWorkoutName] = useState<string>('');
-  const [muscleGroup, setMuscleGroup] = useState<MuscleGroupNames[]>();
+  const [muscleGroup, setMuscleGroup] = useState<MuscleGroupNames[]>([]);
+  const [defaultMuscleGroups, setDefaultMuscleGroups] =
+    useState<MuscleGroupNames[]>();
   const [maxSelected, setMaxSelected] = useState<boolean>(false);
   const [availableWorkouts, setAvailableWorkouts] = useState<Workout[]>();
   const {getSavedDefaults, updateSavedWorkouts, getSavedWorkouts} =
@@ -40,18 +35,20 @@ function GenerateWorkout() {
   useEffect(() => {
     getSavedDefaults((data: DefaultsDefinition) => {
       setAvailableWorkouts(data.workoutList);
+      setDefaultMuscleGroups(data.muscleGroups.map(el => el.name));
       setDefaultData(data);
     });
     getSavedWorkouts((data: WorkoutByReference[]) => {
       setUserSavedWorkouts(data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (muscleGroup) {
-      if (muscleGroup?.length === 2) {
+      if (muscleGroup?.length === 3) {
         setMaxSelected(true);
-      } else if (muscleGroup?.length < 2 && maxSelected) {
+      } else if (muscleGroup?.length < 3 && maxSelected) {
         setMaxSelected(false);
       }
     }
@@ -59,7 +56,7 @@ function GenerateWorkout() {
   }, [muscleGroup]);
 
   const isDisabled = (name: MuscleGroupNames) => {
-    return muscleGroup?.indexOf(name) === -1;
+    return maxSelected && muscleGroup?.indexOf(name) === -1;
   };
 
   const weightMaker = (arr: Workout[]) => {
@@ -145,101 +142,80 @@ function GenerateWorkout() {
     workoutName,
   ]);
 
+  const tapMuscleGroup = (name: MuscleGroupNames) => {
+    if (muscleGroup && muscleGroup?.indexOf(name) > -1) {
+      setMuscleGroup(muscleGroup.filter(el => el !== name));
+    } else {
+      setMuscleGroup((m: MuscleGroupNames[]) => [...m, name]);
+    }
+  };
+
   return (
-    <ScrollView w="100%" m={0} p={5}>
-      <Box>
-        <Box alignItems="center" w="100%">
-          <Text textAlign="center">Workout Name: {workoutName}</Text>
-          <Input
-            value={workoutName}
-            onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) =>
-              setWorkoutName(e.nativeEvent.text)
-            }
-            variant="underlined"
-            placeholder="Name"
-            mb={5}
-          />
-          <Text textAlign="center">{numberOfWorkouts} Exercises</Text>
-          <Slider
-            minValue={5}
-            maxValue={15}
-            mb={5}
-            colorScheme="indigo"
-            onChangeEnd={v => {
-              v && setNumberOfWorkouts(Math.floor(v));
-            }}>
-            <Slider.Track>
-              <Slider.FilledTrack />
-            </Slider.Track>
-            <Slider.Thumb />
-          </Slider>
-          <Text mb={2} textAlign="center">
-            Muscle Group(s)
-          </Text>
-          <Checkbox.Group
-            onChange={(values: MuscleGroupNames[]) => {
-              setMuscleGroup(values);
-            }}
-            // value={muscleGroup}
-            accessibilityLabel="choose muscle group"
-            display="inline-flex"
-            justifyContent={'space-evenly'}
-            mb={5}>
-            <Checkbox
-              isDisabled={isDisabled('Quads') && maxSelected}
-              value="Quads">
-              Quads
-            </Checkbox>
-            <Checkbox
-              isDisabled={isDisabled('Biceps') && maxSelected}
-              value="Biceps">
-              Biceps
-            </Checkbox>
-            <Checkbox
-              isDisabled={isDisabled('Shoulders') && maxSelected}
-              value="Shoulders">
-              Shoulders
-            </Checkbox>
-            <Checkbox
-              isDisabled={isDisabled('Chest') && maxSelected}
-              value="Chest">
-              Chest
-            </Checkbox>
-            <Checkbox
-              isDisabled={isDisabled('Triceps') && maxSelected}
-              value="Triceps">
-              Triceps
-            </Checkbox>
-            <Checkbox
-              isDisabled={isDisabled('Back') && maxSelected}
-              value="Back">
-              Back
-            </Checkbox>
-            <Checkbox
-              isDisabled={isDisabled('Glutes') && maxSelected}
-              value="Glutes">
-              Glutes
-            </Checkbox>
-            <Checkbox
-              isDisabled={isDisabled('Hamstrings') && maxSelected}
-              value="Hamstrings">
-              Hamstrings
-            </Checkbox>
-            <Checkbox isDisabled={isDisabled('Abs') && maxSelected} value="Abs">
-              Abs
-            </Checkbox>
-          </Checkbox.Group>
-          <Button
-            w={'100%'}
-            isLoading={false}
-            isLoadingText="Creating"
-            disabled={muscleGroup?.length === 0 && workoutName.length < 3}
-            onPress={handleSubmit}>
-            Create
-          </Button>
-        </Box>
+    <Box safeAreaX>
+      <Box alignItems="center" w="100%">
+        <Text fontSize={18} textAlign="center">
+          Workout Name: {workoutName}
+        </Text>
+        <Input
+          value={workoutName}
+          onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) =>
+            setWorkoutName(e.nativeEvent.text)
+          }
+          variant="underlined"
+          placeholder="Name"
+          mb={6}
+          fontSize={16}
+        />
+        <Text fontSize={18} textAlign="center">
+          {numberOfWorkouts} Exercises
+        </Text>
+        <Slider
+          size={'lg'}
+          defaultValue={10}
+          minValue={7}
+          maxValue={20}
+          mb={6}
+          colorScheme="indigo"
+          onChangeEnd={v => {
+            v && setNumberOfWorkouts(Math.floor(v));
+          }}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+        <Text fontSize={18} mb={2} textAlign="center">
+          Muscle Group{muscleGroup && muscleGroup.length > 1 ? 's' : ''}{' '}
+          {muscleGroup &&
+            muscleGroup.length > 0 &&
+            `[${muscleGroup && muscleGroup.join(', ')}]`}
+        </Text>
+
+        <Flex
+          mb={6}
+          width={'100%'}
+          flexDirection="row"
+          flexWrap={'wrap'}
+          safeAreaX>
+          {defaultMuscleGroups && (
+            <FilterGroup
+              selectedBackground="#4B9AE7"
+              options={defaultMuscleGroups as any[]}
+              onTap={tapMuscleGroup}
+              isDisabled={isDisabled}
+            />
+          )}
+        </Flex>
+        <Button
+          w={'100%'}
+          isLoading={false}
+          isLoadingText="Creating"
+          disabled={muscleGroup?.length === 0 && workoutName.length < 3}
+          onPress={handleSubmit}>
+          Create
+        </Button>
       </Box>
-    </ScrollView>
+    </Box>
   );
 }
 

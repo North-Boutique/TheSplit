@@ -1,12 +1,12 @@
-import {Box, FlatList, HStack, Text, VStack} from 'native-base';
+import {Box, Text, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {ImportantMappings, WorkoutByReference} from '../../services/types';
+import {ImportantMappings, Workout} from '../../services/types';
+import BottomTabBar from '../Navigation/BottomTabBar';
 import {ExerciseDetailsProps} from './types';
 
-// @ts-ignore
-function ShowExerciseDetails({route}: ExerciseDetailsProps) {
+function ShowExerciseDetails({route, navigation}: ExerciseDetailsProps) {
   const params = route.params;
-  const [renderedData, setRenderedData] = useState<WorkoutByReference>();
+  const [renderedData, setRenderedData] = useState<Workout>();
 
   useEffect(() => {
     if (params?.selectedExercise) {
@@ -17,61 +17,23 @@ function ShowExerciseDetails({route}: ExerciseDetailsProps) {
 
   return (
     <VStack flex={1} justifyContent="space-between">
-      <Box mt={5} mb={2} alignSelf="center">
-        {renderedData && (
+      {renderedData && (
+        <Box mt={5} mb={2} alignSelf="center">
           <Text fontSize="2xl" fontWeight={700}>
             {renderedData.name}
           </Text>
-        )}
-      </Box>
-      {renderedData && renderedData.workouts.length > 0 && (
-        <FlatList
-          data={renderedData.workouts}
-          renderItem={({item}) => (
-            <Box
-              borderBottomWidth="1"
-              _dark={{
-                borderColor: 'muted.50',
-              }}
-              borderColor="muted.800"
-              pl={['0', '4']}
-              pr={['0', '5']}
-              py="2">
-              <HStack
-                safeAreaX={5}
-                space={[2, 3]}
-                justifyContent="space-between">
-                <VStack>
-                  <Text
-                    _dark={{
-                      color: 'warmGray.50',
-                    }}
-                    color="coolGray.800"
-                    bold>
-                    {item.name}
-                  </Text>
-                  <Text
-                    color="coolGray.600"
-                    _dark={{
-                      color: 'warmGray.200',
-                    }}>
-                    {item.description}
-                  </Text>
-                  <Text
-                    color="coolGray.600"
-                    _dark={{
-                      color: 'warmGray.200',
-                    }}>
-                    {item.muscleGroup.join(', ')}
-                  </Text>
-                </VStack>
-                <Text>{ImportantMappings[item.importance]}</Text>
-              </HStack>
-            </Box>
-          )}
-          keyExtractor={item => item.name}
-        />
+          <Box>
+            <Text fontSize="xl">{renderedData.description}</Text>
+          </Box>
+          <Box>
+            <Text fontSize="xl">
+              {ImportantMappings[renderedData.importance]}
+            </Text>
+            <Text>[{renderedData.muscleGroup.join(', ')}]</Text>
+          </Box>
+        </Box>
       )}
+      <BottomTabBar navigation={navigation} active="Exercises" />
     </VStack>
   );
 }

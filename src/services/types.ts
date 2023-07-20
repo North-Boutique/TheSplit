@@ -25,14 +25,14 @@ export type MuscleGroupNames =
 export type MuscleGroups = MuscleGroup[];
 
 export const ImportantMappings = {
-  0: 'Mid',
-  1: 'Better',
-  2: 'Best',
+  0.1: 'Good',
+  0.2: 'Better',
+  0.3: 'Best',
 };
 
 export type Workout = {
   id: number;
-  importance: 0 | 1 | 2;
+  importance: 0.1 | 0.2 | 0.3;
   muscleGroup: MuscleGroupNames[];
   name: string;
   description: string;

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {Box, FlatList, HStack, Text, VStack} from 'native-base';
+import {Box, HStack, Text, VStack} from 'native-base';
 import BottomTabBar from '../Navigation/BottomTabBar';
 import useAvaliableData from '../../hooks/useAvailableData';
 import {WorkoutByReference} from '../../services/types';
@@ -9,6 +9,7 @@ import {RectButton, Swipeable} from 'react-native-gesture-handler';
 import {findIndex} from 'lodash';
 import SwitchHeader from '../Library/Header/SwitchHeader';
 import {LandingScreenProps} from './types';
+import {FlashList} from '@shopify/flash-list';
 
 function Landing({route, navigation}: LandingScreenProps) {
   const params = route?.params;
@@ -105,7 +106,8 @@ function Landing({route, navigation}: LandingScreenProps) {
     <VStack flex={1} justifyContent="space-between">
       <SwitchHeader renderedData={renderedWorkouts} type="Workout" />
       {renderedWorkouts && renderedWorkouts.length > 0 && (
-        <FlatList
+        <FlashList
+          estimatedItemSize={100}
           data={renderedWorkouts}
           extraData={refreshed}
           renderItem={({item}) => (
