@@ -92,3 +92,5 @@ web-build/
 /coverage
 
 .yarn/cache/*
+
+yarn.lock
